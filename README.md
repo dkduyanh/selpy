@@ -79,15 +79,15 @@ Test Case 03: Login User with incorrect email and password
    > - It's recommended to group the locators of web elements in classes so that we can reuse them by class inheritance.
    > - We can organize the locator classes by many ways such as separated web pages (i.e `login_page_locator.py`) or sections (i.e `header_locator.py`, `footer_locator.py`)
 
-4. Add methods to page class using for the tests.
+4. Add methods to page class that using for the tests.
    ```python
    # ./pages/login_page.py
    from pages.base_page import BasePage
    from locators.login_page_locator import LoginPageLocator
 
    class LoginPage(BasePage):
-       def __init__(self, driver):
-           super().__init__(driver)
+       def __init__(self, driver, configs):
+           super().__init__(driver, configs)
            self.locator = LoginPageLocator
            self.open('/login')
    
@@ -109,7 +109,7 @@ Test Case 03: Login User with incorrect email and password
            self.sleep()
    ```
 
-5. Create a test class that implements the test case in `tests` directory.
+5. Create a test class that implements the test cases (test methods) in `tests` directory.
 
    ```python
    # ./tests/login_page_test.py
@@ -119,7 +119,7 @@ Test Case 03: Login User with incorrect email and password
    class LoginPageTest(BaseTest):
 
        def setUp(self):
-           self._page = LoginPage(self._driver)
+           self._page = LoginPage(self._driver, self._config)
    
        """
        Test Case 03: Login User with incorrect email and password
@@ -148,9 +148,21 @@ Test Case 03: Login User with incorrect email and password
 
 ## Execute the tests
 ### Using Unittest
-```shell
-python -m unittest tests/login_page_test.py
-```
+- Run a specific test method (test case) in a test file (test suite):
+   ```shell
+   python3 -m unittest tests/<TEST_FILE_NAME>.py <TEST_CLASS>.<TEST_METHOD>
+   ```
+
+- Run all test methods in a specified test file
+   ```shell
+  # 
+   python -m unittest tests/<TEST_FILE_NAME>.py
+   ```
+
+- Run all test files:
+   ```shell
+   python all_tests.py
+   ```
 
 ### Using Pytest
 ```
@@ -162,7 +174,7 @@ First, We need to set a default test runner in Pycharm:
 ```text
 (Menu) File > Settings > Tools > Python Integrated Tools > Testing
 ```
-Second, select one of the tests from `tests` directory and click "Run" or press `Shift + F10`
+Second, select a test file from `tests` directory or `all_tests.py` then click `"Run"` or press `Shift + F10`.
 
 ## Documentations
 - [Selenium with Python](https://selenium-python.readthedocs.io/index.html)
