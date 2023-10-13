@@ -3,8 +3,8 @@ from locators.login_page_locator import LoginPageLocator
 
 
 class LoginPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver, configs):
+        super().__init__(driver, configs)
         self.locator = LoginPageLocator
         self.open('/login')
 

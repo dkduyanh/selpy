@@ -6,7 +6,7 @@ import unittest
 class LoginPageTest(BaseTest):
 
     def setUp(self):
-        self._page = LoginPage(self._driver)
+        self._page = LoginPage(self._driver, self._config)
 
     """
     Test Case 03: Login User with incorrect email and password

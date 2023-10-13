@@ -5,8 +5,11 @@ base_url: https://automationexercise.com
 # Supported browsers: chrome, firefox, edge
 browser: chrome
 
+# Maximize the web browser immediately after opening
+maximize_window: True
+
 # Default wait time (in seconds) for fetching elements
 wait: 5
 
 # Default page load timeout (in seconds)
-timeout: 10
+timeout: 30
